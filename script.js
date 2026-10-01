@@ -1,8 +1,9 @@
 'use strict';
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 
 const menuButton = document.getElementById('menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -10,9 +11,9 @@ const header = document.getElementById('site-header');
 const backToTop = document.getElementById('back-to-top');
 const currentYear = document.getElementById('current-year');
 
-currentYear.textContent = new Date().getFullYear();
+if (currentYear) currentYear.textContent = new Date().getFullYear();
 
-menuButton.addEventListener('click', () => {
+menuButton?.addEventListener('click', () => {
   const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
   menuButton.setAttribute('aria-expanded', String(!isOpen));
   mobileMenu.classList.toggle('hidden');
@@ -29,25 +30,84 @@ document.querySelectorAll('#mobile-menu a').forEach((link) => {
 
 window.addEventListener('scroll', () => {
   const scrolled = window.scrollY > 40;
-  header.classList.toggle('scrolled', scrolled);
-  backToTop.classList.toggle('hidden', window.scrollY < 600);
+  header?.classList.toggle('scrolled', scrolled);
+  backToTop?.classList.toggle('hidden', window.scrollY < 600);
 }, { passive: true });
 
-backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-document.querySelectorAll('[data-comparison]').forEach((comparison) => {
+function initializeComparison(comparison) {
+  if (comparison.dataset.initialized) return;
+  comparison.dataset.initialized = 'true';
+
   const range = comparison.querySelector('input[type="range"]');
   const after = comparison.querySelector('.comparison-after');
+  const afterImage = after.querySelector('img');
 
   const updateComparison = () => {
     const value = `${range.value}%`;
     after.style.width = value;
+    afterImage.style.width = `${comparison.clientWidth}px`;
     comparison.style.setProperty('--position', value);
   };
 
   range.addEventListener('input', updateComparison);
+  window.addEventListener('resize', updateComparison);
   updateComparison();
+}
+
+document.querySelectorAll('[data-comparison]').forEach(initializeComparison);
+
+document.querySelectorAll('[data-project-filter]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const category = button.dataset.projectFilter;
+    document.querySelectorAll('[data-project-filter]').forEach((item) => item.classList.remove('is-active'));
+    button.classList.add('is-active');
+    document.querySelectorAll('[data-project-category]').forEach((project) => {
+      project.classList.toggle('hidden', category !== 'alle' && project.dataset.projectCategory !== category);
+    });
+  });
 });
+
+const reviewsList = document.getElementById('reviews-list');
+const reviewsPrevious = document.getElementById('reviews-previous');
+const reviewsNext = document.getElementById('reviews-next');
+const reviewsPagination = document.getElementById('reviews-pagination');
+
+function reviewsPageWidth() {
+  const card = reviewsList?.querySelector('.review-card');
+  if (!card || !reviewsList) return 0;
+  const gap = Number.parseFloat(window.getComputedStyle(reviewsList).gap) || 0;
+  return 2 * (card.getBoundingClientRect().width + gap);
+}
+
+function createReviewDots() {
+  if (!reviewsList || !reviewsPagination) return;
+  const pageCount = Math.ceil(reviewsList.querySelectorAll('.review-card').length / 2);
+  reviewsPagination.innerHTML = '';
+  Array.from({ length: pageCount }, (_, index) => {
+    const dot = document.createElement('span');
+    dot.className = `review-dot${index === 0 ? ' is-active' : ''}`;
+    reviewsPagination.append(dot);
+  });
+}
+
+function updateReviewsControls() {
+  if (!reviewsList || !reviewsPrevious || !reviewsNext) return;
+  const isFirstPage = reviewsList.scrollLeft < 10;
+  const isLastPage = reviewsList.scrollLeft >= reviewsList.scrollWidth - reviewsList.clientWidth - 10;
+  reviewsPrevious.disabled = isFirstPage;
+  reviewsNext.disabled = isLastPage;
+  const currentPage = Math.round(reviewsList.scrollLeft / reviewsPageWidth());
+  reviewsPagination?.querySelectorAll('.review-dot').forEach((dot, index) => dot.classList.toggle('is-active', index === currentPage));
+}
+
+reviewsPrevious?.addEventListener('click', () => reviewsList.scrollBy({ left: -reviewsPageWidth(), behavior: 'smooth' }));
+reviewsNext?.addEventListener('click', () => reviewsList.scrollBy({ left: reviewsPageWidth(), behavior: 'smooth' }));
+reviewsList?.addEventListener('scroll', updateReviewsControls, { passive: true });
+window.addEventListener('resize', updateReviewsControls);
+createReviewDots();
+updateReviewsControls();
 
 const form = document.getElementById('contact-form');
 const submitButton = document.getElementById('submit-button');
@@ -77,14 +137,14 @@ function validateField(field) {
   return !message;
 }
 
-form.querySelectorAll('input, select, textarea').forEach((field) => {
+form?.querySelectorAll('input, select, textarea').forEach((field) => {
   field.addEventListener('blur', () => validateField(field));
   field.addEventListener('input', () => {
     if (field.classList.contains('invalid')) validateField(field);
   });
 });
 
-form.addEventListener('submit', async (event) => {
+form?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const fields = [...form.querySelectorAll('input, select, textarea')];
@@ -96,6 +156,10 @@ form.addEventListener('submit', async (event) => {
     form.querySelector('.invalid')?.focus();
     return;
   }
+
+  emailjs.init({
+    publicKey: EMAILJS_PUBLIC_KEY
+});
 
   const placeholdersConfigured = ![
     EMAILJS_PUBLIC_KEY,
@@ -135,22 +199,29 @@ form.addEventListener('submit', async (event) => {
     formStatus.className = 'text-sm text-red-600';
   } finally {
     submitButton.disabled = false;
-    submitButton.textContent = 'Anfrage senden';
+    submitButton.innerHTML = 'Unverbindliche Anfrage senden <span aria-hidden="true">→</span>';
   }
 });
 
-/*
-EMAILJS EINRICHTUNG
-1. Kostenloses Konto auf https://www.emailjs.com/ erstellen.
-2. Unter "Email Services" einen E-Mail-Dienst verbinden.
-3. Unter "Email Templates" eine Vorlage anlegen.
-4. In der Vorlage Variablen verwenden, die den Feldnamen entsprechen:
-   {{name}}, {{email}}, {{phone}}, {{service}}, {{message}}
-5. Oben in dieser Datei YOUR_PUBLIC_KEY, YOUR_SERVICE_ID und
-   YOUR_TEMPLATE_ID durch die echten Werte ersetzen.
-6. In EmailJS die erlaubte Domain eintragen, damit nur Ihre Webseite
-   Anfragen senden darf.
 
-Für produktive Webseiten sollten zusätzlich Spam-Schutz, serverseitige
-Validierung und eine echte Datenschutzseite eingerichtet werden.
-*/
+
+
+// form.addEventListener("submit", async function (event) {
+//     event.preventDefault();
+
+//     try {
+//         const response = await emailjs.sendForm(
+//             EMAILJS_SERVICE_ID,
+//             EMAILJS_TEMPLATE_ID,
+//             form
+//         );
+
+//         console.log("E-Mail versendet:", response);
+//         alert("Vielen Dank! Ihre Anfrage wurde erfolgreich versendet.");
+
+//         form.reset();
+//     } catch (error) {
+//         console.error("Fehler beim Versenden:", error);
+//         alert("Die Nachricht konnte leider nicht versendet werden.");
+//     }
+// });

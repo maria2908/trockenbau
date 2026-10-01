@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unsere Projekte | Bauelemente & Innenausbau</title>
+  <meta name="description" content="Ausgewählte Referenzprojekte für Renovierung, Bad, Innenausbau und Sanierung.">
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{brand:{navy:'#071c3f',gold:'#f4b326',light:'#f6f7fa'}},boxShadow:{soft:'0 18px 50px rgba(7, 28, 63, 0.10)'}}}}</script>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+  <header id="site-header" class="sticky inset-x-0 top-0 z-50 bg-white/95 shadow-sm backdrop-blur">
+    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <a href="index.html" class="leading-tight" aria-label="Zur Startseite"><span class="block font-extrabold text-brand-navy">Bauelemente &</span><span class="block font-extrabold text-brand-navy">Innenausbau</span></a>
+      <nav class="hidden items-center gap-7 text-sm font-semibold text-brand-navy md:flex" aria-label="Hauptnavigation"><a class="nav-link" href="index.html#leistungen">Leistungen</a><a class="nav-link" href="projekte.html">Projekte</a><a class="nav-link" href="index.html#bewertungen">Referenzen</a></nav>
+      <a href="index.html#kontakt" class="rounded-xl bg-brand-navy px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-800">Anfrage stellen</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="bg-brand-light py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <a href="index.html" class="text-sm font-bold text-brand-navy hover:text-brand-gold">← Zur Startseite</a>
+        <div class="mt-8 max-w-2xl"><p class="section-kicker">Unsere Referenzen</p><h1 class="section-title">Projekte, die für sich sprechen</h1><p class="mt-4 text-slate-600">Filtern Sie unsere Arbeiten nach Bereich und entdecken Sie passende Beispiele.</p></div>
+        <div class="mt-8 flex flex-wrap gap-3" aria-label="Projektkategorien">
+          <button class="project-filter is-active" type="button" data-project-filter="alle">Alle</button>
+          <button class="project-filter" type="button" data-project-filter="renovierung">Renovierung</button>
+          <button class="project-filter" type="button" data-project-filter="badezimmer">Badezimmer</button>
+          <button class="project-filter" type="button" data-project-filter="innenausbau">Innenausbau</button>
+          <button class="project-filter" type="button" data-project-filter="sanierung">Sanierung</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-14 sm:py-20"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <article class="project-card">
+            <div class="comparison" data-project-category="innenausbau" data-comparison>
+              <img class="comparison-image-fill" src="./imgs/projekts/innenausbau/after/3.jpg" alt="Büro nach der Innenausbau" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/innenausbau/before/3.jpg" alt="Büro vor der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Innenausbau</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Büro</h2>
+          <p class="mt-2 text-sm text-slate-600">Neue Trockenbauwände erstellt, Wände verspachtelt, Raumaufteilung modernisiert.</p>
+        </div>
+      </article>
+      <article class="project-card">
+            <div class="comparison" data-project-category="renovierung" data-comparison>
+              <img class="comparison-image-fill" src="./imgs/projekts/renovierung/after/1.jpg" alt="Büro nach der Innenausbau" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/renovierung/before/1.jpg" alt="Boden vor der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Renovierung</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Bürorenovierung</h2>
+          <p class="mt-2 text-sm text-slate-600">Neue Innentüren montiert</p>
+        </div>
+      </article>
+      <article class="project-card">
+            <div class="comparison" data-project-category="sanierung" data-comparison>
+              <img class="comparison-image-fill" src="./imgs/projekts/sanierung/after/1.jpg" alt="Garage nach der Sanierung" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/sanierung/before/1.jpg" alt="Garage vor der Sanierung" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Sanierung</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Garagesanierung</h2>
+          <p class="mt-2 text-sm text-slate-600">Sanierung einer Garage mit neuem Satteldach, verputzter Fassade und neuer Dachentwässerung für eine moderne und langlebige Optik.</p>
+        </div>
+      </article>
+      <article class="project-card">
+            <div class="comparison" data-project-category="sanierung" data-comparison>
+              <img class="comparison-image-fill" src="./imgs/projekts/sanierung/after/2.jpg" alt="Fassade nach der Sanierung" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/sanierung/before/2.jpg" alt="Fassade vor der Sanierung" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Sanierung</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Fassadensanierung</h2>
+          <p class="mt-2 text-sm text-slate-600">Fassadensanierung mit Erneuerung des Außenputzes, Instandsetzung der Gesimse und moderner Fassadenbeschichtung für eine langlebige und hochwertige Optik.</p>
+        </div>
+      </article>
+      <article class="project-card">
+            <div class="comparison" data-project-category="innenausbau" data-comparison>
+              <img class="comparison-image-fill" src="./imgs/projekts/innenausbau/after/4.jpg" alt="Treppen nach der Innenausbau" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/innenausbau/before/4.jpg" alt="Treppen vor der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Innenausbau</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Treppen</h2>
+          <p class="mt-2 text-sm text-slate-600">Innenausbau mit Verkleidung der Betontreppe in Holz, Fertigstellung der Wandoberflächen und hochwertiger Gestaltung für ein modernes Wohnambiente.</p>
+        </div>
+      </article>
+      <article class="project-card">
+            <div class="comparison" data-project-category="innenausbau" data-comparison>
+              <img class="comparison-image-fill" src="./imgs/projekts/innenausbau/after/5.jpg" alt="Treppen nach der Innenausbau" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/innenausbau/before/5.jpg" alt="Treppen vor der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50" >
+              <span class="label before">Vorher</span><span class="label after">Innenausbau</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Innenausbau</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Treppen</h2>
+          <p class="mt-2 text-sm text-slate-600">Komplettsanierung mit neuem Bodenbelag, Holztreppe, Wand- und Deckenarbeiten, moderner Beleuchtung sowie hochwertigem Innenausbau.</p>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="innenausbau" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/innenausbau/after/1.jpg" alt="Büro nach der Innenausbau" loading="lazy">
+            <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/innenausbau/before/1.jpg" alt="Büro vor der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50" >
+              <span class="label before">Vorher</span><span class="label after">Innenausbau</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Innenausbau</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Büro</h2>
+          <p class="mt-2 text-sm text-slate-600">Innenausbau mit Trockenbauwänden, Bodenverlegung, Wand- und Deckenarbeiten sowie moderner Beleuchtung für ein hochwertiges Raumkonzept.</p>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="innenausbau" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/innenausbau/after/2.jpg" alt="Treppen nach der Innenausbau" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/innenausbau/before/2.jpg" alt="Treppen vor der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Innenausbau</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Treppen</h2>
+          <p class="mt-2 text-sm text-slate-600">Innenausbau mit Trockenbau, Bodenverlegung, Wand- und Deckenarbeiten sowie moderner LED-Lichtgestaltung für ein hochwertiges Raumkonzept.</p>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="badezimmer" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/badezimmer/after/1.jpg" alt="Badezimmer nach der Modernisierung" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/badezimmer/before/1.jpg" alt="Badezimmer vor der Modernisierung" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Badezimmer</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Badezimmer</h2>
+          <p class="mt-2 text-sm text-slate-600">Modernisierung eines Badezimmers mit großformatigen Fliesen, bodengleicher Dusche, Badewanne und hochwertiger Sanitärausstattung.</p>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="innenausbau" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/innenausbau/after/6.jpg" alt="Badezimmer nach der Innenausbau" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/innenausbau/before/6.jpg" alt="Badezimmer vor der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Innenausbau</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Wohnzimmer</h2>
+          <p class="mt-2 text-sm text-slate-600">Komplettmodernisierung mit Design-Fliesen, Wand- und Deckenarbeiten, neuer Elektroinstallation sowie hochwertigem Innenausbau.</p>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="renovierung" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/renovierung/after/2.jpg" alt="Decke vor der Renovierung" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/renovierung/before/2.jpg" alt="Decke nach der Renovierung" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Renovierung</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Decke</h2>
+          <p class="mt-2 text-sm text-slate-600">Trockenbau mit abgehängter Decke, integrierter LED-Beleuchtung, Spachtelarbeiten und modernem Deckendesign.</p>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="innenausbau" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/innenausbau/after/7.jpg" alt="Wand nach der Innenausbau" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/innenausbau/before/7.jpg" alt="Wand vor der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Innenausbau</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Wand</h2>
+          <p class="mt-2 text-sm text-slate-600">Innenausbau mit Verlegung einer Naturstein-Verblendwand, Wandgestaltung und hochwertiger Wohnraumgestaltung.</p>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="renovierung" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/renovierung/after/3.jpg" alt="Terrasse nach der Renovierung" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/renovierung/before/3.jpg" alt="Terrasse vor der Renovierung" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Renovierung</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Terrasse</h2>
+          <p class="mt-2 text-sm text-slate-600">Erneuerung der Terrasse mit modernem Terrassenbelag, neuer Unterkonstruktion und hochwertiger Gestaltung des Außenbereichs.</p>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="innenausbau" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/innenausbau/after/8.jpg" alt="Decke vor der Innenausbau" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/innenausbau/before/8.jpg" alt="Decke vor der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Innenausbau</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Decke</h2>
+          <p class="mt-2 text-sm text-slate-600">Innenausbau mit modernem Deckendesign, integrierter LED-Beleuchtung, Bodenverlegung und hochwertiger Küchen- und Treppengestaltung.</p>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="renovierung" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/renovierung/after/4.jpg" alt="Boden nach der Renovierung" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/renovierung/before/4.jpg" alt="Boden vor der Renovierung" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Renovierung</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Boden</h2>
+          <p class="mt-2 text-sm text-slate-600">Renovierung mit fugenlosem Designboden, Spachtelarbeiten und moderner Raumgestaltung für eine hochwertige Optik.</p>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="renovierung" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/renovierung/after/5.jpg" alt="Terrasse nach der Renovierung" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/renovierung/before/5.jpg" alt="Terrasse vor der Renovierung" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Renovierung</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Terrasse</h2>
+          <p class="mt-2 text-sm text-slate-600">Neugestaltung der Terrasse mit großformatigen Feinsteinzeugplatten, neuen Stufen und hochwertiger Gestaltung des Außenbereichs.</p>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="innenausbau" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/innenausbau/after/9.jpg" alt="Hauseingang nach der Innenausbau" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/innenausbau/before/9.jpg" alt="Hauseingang nach der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Innenausbau</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Hauseingang</h2>
+          <p class="mt-2 text-sm text-slate-600">Modernisierung des Hauseingangs mit maßgefertigtem Aluminium-Vordach, Holz-Sichtschutz und hochwertiger Natursteinverkleidung der Eingangsstufen.</p>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="sanierung" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/sanierung/after/3.jpg" alt="Zaun nach der Sanierung" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/sanierung/before/3.jpg" alt="Zaun vor der Sanierung" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Sanierung</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Zaun</h2>
+          <p class="mt-2 text-sm text-slate-600">Errichtung einer hochwertigen Sichtschutzanlage aus Natursteinpfeilern und horizontalen Holzlamellen inklusive kompletter Neugestaltung der Grundstückseinfriedung.</p>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="sanierung" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/sanierung/after/4.jpg" alt="Hauseingang nach der Sanierung" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/sanierung/before/4.jpg" alt="Hauseingang vor der Sanierung" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Sanierung</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Hauseingang</h2>
+          <p class="mt-2 text-sm text-slate-600">Komplette Modernisierung einer Bestandsgarage mit neuer Holzfassade, modernen Schiebetoren und Dachsanierung für eine zeitgemäße Optik und langlebigen Wetterschutz.</p>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="badezimmer" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/badezimmer/after/2.jpg" alt="Badezimmer nach der Innenausbau" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/badezimmer/before/2.jpg" alt="Badezimmer vor der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Badezimmer</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Badezimmer</h2>
+          <p class="mt-2 text-sm text-slate-600">Modernisierung eines großzügigen Badezimmers mit großformatigen Feinsteinzeugfliesen in Anthrazit sowie hochwertiger Verkleidung der Badewanne und Installationswand.</p>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="badezimmer" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/badezimmer/after/3.jpg" alt="Badezimmer nach der Innenausbau" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/badezimmer/before/3.jpg" alt="Badezimmer vor der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Badezimmer</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Badezimmer</h2>
+          <p class="mt-2 text-sm text-slate-600">Komplette Modernisierung eines Badezimmers mit großformatigen Feinsteinzeugfliesen, bodengleicher Duschfläche, modernen Vorwandelementen und hochwertiger Sanitärvorbereitung.</p>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="innenausbau" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/innenausbau/after/10.jpg" alt="Wohnzimmer nach der Innenausbau" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/innenausbau/before/10.jpg" alt="Badezimmer vor der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Innenausbau</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Wohnzimmer</h2>
+          <p class="mt-2 text-sm text-slate-600">Einbau und hochwertige Verkleidung eines modernen Eckkamins mit großformatiger, fugenarmer Oberfläche als stilvoller Mittelpunkt des offenen Wohnbereichs.</p>
+      </article>
+      <article class="project-card">
+        <div class="comparison" data-project-category="badezimmer" data-comparison>
+          <img class="comparison-image-fill" src="./imgs/projekts/badezimmer/after/4.jpg" alt="Badezimmer nach der Innenausbau" loading="lazy">
+              <div class="comparison-after" style="width:50%"><img src="./imgs/projekts/badezimmer/before/4.png" alt="Badezimmer vor der Innenausbau" loading="lazy"></div>
+              <input type="range" min="0" max="100" value="50">
+              <span class="label before">Vorher</span><span class="label after">Nachher</span>
+            </div>
+            <div class="p-5">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-amber-600">Badezimmer</p>
+          <h2 class="mt-2 font-extrabold text-brand-navy">Badezimmer</h2>
+          <p class="mt-2 text-sm text-slate-600">Modernes Badezimmer mit hochwertiger Ausstattung und elegantem Design.</p>
+      </article>
+    </section>
+  </main>
+  <footer class="bg-slate-950 py-10 text-slate-300"><div class="mx-auto max-w-7xl px-4 text-center text-sm sm:px-6 lg:px-8">© <span id="current-year"></span> Bauelemente & Innenausbau · <a class="font-bold text-white" href="index.html#kontakt">Kontakt aufnehmen</a></div></footer>
+  <script src="script.js" defer></script>
+</body>
+</html>
