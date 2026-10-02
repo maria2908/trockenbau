@@ -1,9 +1,4 @@
 'use strict';
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 
 const menuButton = document.getElementById('menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -12,6 +7,38 @@ const backToTop = document.getElementById('back-to-top');
 const currentYear = document.getElementById('current-year');
 
 if (currentYear) currentYear.textContent = new Date().getFullYear();
+
+const navigationLinks = [...document.querySelectorAll('.nav-link')];
+
+function setActiveNavigation(href) {
+  navigationLinks.forEach((link) => {
+    link.classList.toggle('is-active', link.getAttribute('href') === href);
+  });
+}
+
+if (window.location.pathname.endsWith('/projekte.html') || window.location.pathname.endsWith('/projekte')) {
+  setActiveNavigation('projekte.html');
+} else {
+  const observedSections = navigationLinks
+    .map((link) => ({ link, section: document.querySelector(link.getAttribute('href')) }))
+    .filter(({ section }) => section);
+
+  const navigationObserver = new IntersectionObserver((entries) => {
+    const activeEntry = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
+
+    if (activeEntry) setActiveNavigation(`#${activeEntry.target.id}`);
+  }, {
+    rootMargin: '-30% 0px -55%',
+    threshold: [0, 0.25, 0.5, 0.75, 1]
+  });
+
+  observedSections.forEach(({ link, section }) => {
+    link.addEventListener('click', () => setActiveNavigation(link.getAttribute('href')));
+    navigationObserver.observe(section);
+  });
+}
 
 menuButton?.addEventListener('click', () => {
   const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
@@ -64,7 +91,10 @@ document.querySelectorAll('[data-project-filter]').forEach((button) => {
     document.querySelectorAll('[data-project-filter]').forEach((item) => item.classList.remove('is-active'));
     button.classList.add('is-active');
     document.querySelectorAll('[data-project-category]').forEach((project) => {
-      project.classList.toggle('hidden', category !== 'alle' && project.dataset.projectCategory !== category);
+      project.closest('.project-card')?.classList.toggle(
+        'hidden',
+        category !== 'alle' && project.dataset.projectCategory !== category
+      );
     });
   });
 });
@@ -119,7 +149,7 @@ const validators = {
   phone: (value) => !value.trim() || /^[+\d\s()\/-]{6,}$/.test(value.trim()) ? '' : 'Bitte prüfen Sie die Telefonnummer.',
   service: (value) => value ? '' : 'Bitte wählen Sie eine Leistung aus.',
   message: (value) => value.trim().length >= 15 ? '' : 'Bitte beschreiben Sie Ihr Projekt mit mindestens 15 Zeichen.',
-  privacy: (_, field) => field.checked ? '' : 'Bitte stimmen Sie der Datenschutzerklärung zu.'
+  privacy: (_, field) => field.checked ? '' : 'Bitte bestätigen Sie, dass Sie die Datenschutzerklärung zur Kenntnis genommen haben.'
 };
 
 function validateField(field) {
@@ -157,18 +187,14 @@ form?.addEventListener('submit', async (event) => {
     return;
   }
 
-  emailjs.init({
-    publicKey: EMAILJS_PUBLIC_KEY
-});
+  const emailJsConfig = {
+    publicKey: form.dataset.emailjsPublicKey?.trim(),
+    serviceId: form.dataset.emailjsServiceId?.trim(),
+    templateId: form.dataset.emailjsTemplateId?.trim()
+  };
 
-  const placeholdersConfigured = ![
-    EMAILJS_PUBLIC_KEY,
-    EMAILJS_SERVICE_ID,
-    EMAILJS_TEMPLATE_ID
-  ].some((value) => value.startsWith('YOUR_'));
-
-  if (!placeholdersConfigured) {
-    formStatus.textContent = 'Demo-Modus: EmailJS-Zugangsdaten sind noch nicht eingetragen.';
+  if (Object.values(emailJsConfig).some((value) => !value)) {
+    formStatus.textContent = 'Das Kontaktformular ist noch nicht mit EmailJS verbunden.';
     formStatus.className = 'text-sm text-amber-700';
     return;
   }
@@ -182,12 +208,11 @@ form?.addEventListener('submit', async (event) => {
       throw new Error('EmailJS konnte nicht geladen werden.');
     }
 
-    window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-
     await window.emailjs.sendForm(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      form
+      emailJsConfig.serviceId,
+      emailJsConfig.templateId,
+      form,
+      { publicKey: emailJsConfig.publicKey }
     );
 
     form.reset();
@@ -202,26 +227,3 @@ form?.addEventListener('submit', async (event) => {
     submitButton.innerHTML = 'Unverbindliche Anfrage senden <span aria-hidden="true">→</span>';
   }
 });
-
-
-
-
-// form.addEventListener("submit", async function (event) {
-//     event.preventDefault();
-
-//     try {
-//         const response = await emailjs.sendForm(
-//             EMAILJS_SERVICE_ID,
-//             EMAILJS_TEMPLATE_ID,
-//             form
-//         );
-
-//         console.log("E-Mail versendet:", response);
-//         alert("Vielen Dank! Ihre Anfrage wurde erfolgreich versendet.");
-
-//         form.reset();
-//     } catch (error) {
-//         console.error("Fehler beim Versenden:", error);
-//         alert("Die Nachricht konnte leider nicht versendet werden.");
-//     }
-// });
