@@ -1,29 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.ihre-domain.de/</loc>
-    <lastmod>2026-07-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.ihre-domain.de/#leistungen</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.ihre-domain.de/#projekte</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.ihre-domain.de/#ueber-uns</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.ihre-domain.de/#kontakt</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- Absolute URLs werden ergänzt, sobald die echte Live-Domain feststeht. -->
 </urlset>
